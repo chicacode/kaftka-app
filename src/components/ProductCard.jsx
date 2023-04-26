@@ -1,13 +1,13 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { useDispatch } from "react-redux";
 import { productDeleteAction } from "../actions/productActions";
 import Swal from "sweetalert2";
 
 const ProductCard = ({ product }) => {
-  //   console.log("que llega desde Productos", product);
   const { id, title, image, price, category, description, rating } = product;
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleDeleteProduct = (id) => {
     Swal.fire({
@@ -23,8 +23,11 @@ const ProductCard = ({ product }) => {
         dispatch(productDeleteAction(id));
       }
     });
-
   };
+
+  const redirect = (product) =>{
+    navigate(`/products/update/${product.id}`);
+  }
   return (
     <div
       key={title}
@@ -46,12 +49,13 @@ const ProductCard = ({ product }) => {
       </p>
       {/* Handle this if its a product page then only show add to cart otherwise show removefromcart */}
       <div className="flex justify-center">
-        <Link
-          to={`/products/update/${id}`}
+        <button
+          type="button"
+          onClick={() => redirect(product)}
           className="border-2 border-blue-100 hover:border-blue-600 focus:border-blue-500 rounded-lg p-2 flex items-center mx-2"
         >
           Edit Product
-        </Link>
+        </button>
 
         <button
           type="button"

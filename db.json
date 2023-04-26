@@ -35,6 +35,24 @@
         "rate": 4.7,
         "count": 500
       }
+    },
+    {
+      "title": "Keyboard C-290",
+      "price": 150,
+      "description": "Logitech Keyboard 290",
+      "id": 4
+    },
+    {
+      "title": "Headset Sony",
+      "price": 40,
+      "description": "Sony Headset",
+      "id": 5
+    },
+    {
+      "title": "IWatch",
+      "price": 260,
+      "description": "apple I watch serie 7",
+      "id": 6
     }
   ]
 }

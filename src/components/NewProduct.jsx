@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { createNewProduct } from "../actions/productActions";
+import Loader from "./Loader";
 
 const NewProduct = () => {
   const [title, setName] = useState("");
@@ -11,8 +12,8 @@ const NewProduct = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { loading, error }  = useSelector((state) => state.products.loading);
-  
+  const { products } = useSelector((state) => state);
+
   const addNewProduct = (product) => dispatch(createNewProduct(product));
 
   const submitNewProduct = (e) => {
@@ -32,7 +33,7 @@ const NewProduct = () => {
       description,
     });
 
-    navigate('/');
+    navigate("/");
   };
 
   return (
@@ -40,7 +41,7 @@ const NewProduct = () => {
       <div className="border-2 border-slate-100 px-6 py-3">Add New Product</div>
       <div className="p-6">
         <h5 className="mb-2 text-xl font-medium leading-tight text-neutral-800">
-          Special title treatment
+          Add Product
         </h5>
         <p className="mb-4 text-base text-neutral-600">
           With supporting text below as a natural lead-in to additional content.
@@ -51,16 +52,15 @@ const NewProduct = () => {
             <div className="relative mb-6" data-te-input-wrapper-init>
               <input
                 type="text"
-                className="peer block min-h-[auto] w-full rounded-lg border-2 border-slate-100 bg-white px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear"
+                className="peer block min-h-[auto] w-full rounded-lg border-2 border-slate-200 bg-white px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear"
                 id="title"
-                placeholder="Name"
                 name="title"
                 value={title}
                 onChange={(e) => setName(e.target.value)}
               />
               <label
                 htmlFor="title"
-                className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none "
+                className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
               >
                 Product Name
               </label>
@@ -69,16 +69,16 @@ const NewProduct = () => {
             <div className="relative mb-6" data-te-input-wrapper-init>
               <input
                 type="number"
-                className="peer block min-h-[auto] w-full rounded-lg border-2 border-slate-100 bg-white px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none  [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+                className="peer block min-h-[auto] w-full rounded-lg border-2 border-slate-200 bg-white px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none  [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                 id="price"
-                placeholder="Price"
+
                 name="price"
                 value={price}
                 onChange={(e) => setPrice(Number(e.target.value))}
               />
               <label
                 htmlFor="price"
-                className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6]  transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none "
+                className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
               >
                 Product Price
               </label>
@@ -96,7 +96,7 @@ const NewProduct = () => {
               />
               <label
                 htmlFor="description"
-                className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6]  transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none "
+                className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
               >
                 Product Description
               </label>
@@ -111,8 +111,14 @@ const NewProduct = () => {
               Add new product
             </button>
           </form>
-          {loading ? <div>Loading</div> : null}
-          {error ? (
+          {products.loading ? (
+            <div className="flex h-screen">
+              <div className="m-auto">
+                <Loader />
+              </div>
+            </div>
+          ) : null}
+          {products.error ? (
             <div className="border border-red-500 py-2 text-center mt-2">
               Error: Failed request
             </div>
