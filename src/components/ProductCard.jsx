@@ -1,7 +1,10 @@
 import { useNavigate } from "react-router-dom";
 
 import { useDispatch } from "react-redux";
-import { productDeleteAction } from "../actions/productActions";
+import {
+  updateProductAction,
+  deleteProductAction,
+} from "../actions/productActions";
 import Swal from "sweetalert2";
 
 const ProductCard = ({ product }) => {
@@ -20,14 +23,16 @@ const ProductCard = ({ product }) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        dispatch(productDeleteAction(id));
+        dispatch(deleteProductAction(id));
       }
     });
   };
 
-  const redirect = (product) =>{
+  const redirect = (product) => {
+    dispatch(updateProductAction(product));
     navigate(`/products/update/${product.id}`);
-  }
+  };
+  
   return (
     <div
       key={title}

@@ -1,5 +1,6 @@
 import clientAxios from "../config/axios";
-import { FETCH_PRODUCT_SUCCESS, FETCH_PRODUCT_FAILURE, FETCH_PRODUCT_START, ADD_PRODUCT, ADD_PRODUCT_SUCCESS, ADD_PRODUCT_FAILURE, GET_PRODUCT_DELETE, DELETE_PRODUCT_SUCCESS, DELETE_PRODUCT_FAILURE } from "../types";
+import productsReducers from "../reducers/productsReducers";
+import { FETCH_PRODUCT_SUCCESS, FETCH_PRODUCT_FAILURE, FETCH_PRODUCT_START, ADD_PRODUCT, ADD_PRODUCT_SUCCESS, ADD_PRODUCT_FAILURE, GET_PRODUCT_UPDATE, UPDATE_PRODUCT_START, UPDATE_PRODUCT_SUCCESS, UPDATE_PRODUCT_FAILURE, GET_PRODUCT_DELETE, DELETE_PRODUCT_SUCCESS, DELETE_PRODUCT_FAILURE } from "../types";
 import Swal from "sweetalert2";
 // Actions creators
 
@@ -33,6 +34,25 @@ export const addNewProductSuccess = (product) => ({
 export const addNewProductError = (error) => ({
     type: ADD_PRODUCT_FAILURE,
     payload: error
+})
+
+export const getProductUpdate = (product) => ({
+    type: GET_PRODUCT_UPDATE,
+    payload: product
+})
+
+const editProduct = () => ({
+    type: UPDATE_PRODUCT_START
+})
+
+const updateProductSuccess = (product) => ({
+    type: UPDATE_PRODUCT_SUCCESS,
+    payload: product
+})
+
+const updateProductFailure = () =>({
+    type: UPDATE_PRODUCT_FAILURE,
+    payload: true
 })
 
 const getProductDelete = (id) => ({
@@ -89,7 +109,27 @@ export const createNewProduct = (product) => {
     }
 }
 
-export const productDeleteAction = (id) => {
+export const updateProductAction = (product) => {
+    return (dispatch) => {
+        dispatch(getProductUpdate(product))
+    }
+}
+
+export const updateProduct = (product) => {
+    return async (dispatch) => {
+        dispatch(editProduct())
+        
+        try {
+            await clientAxios.put(`http://localhost:4000/products/${product.id}`, product)
+            dispatch(updateProductSuccess(product))
+        } catch (error) {
+            dispatch(updateProductFailure())
+        }
+    }
+}
+
+
+export const deleteProductAction = (id) => {
 
     return async (dispatch) => {
         await dispatch(getProductDelete(id));
@@ -103,3 +143,4 @@ export const productDeleteAction = (id) => {
         }
     }
 }
+

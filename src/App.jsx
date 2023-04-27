@@ -16,7 +16,7 @@ function App() {
         <Header />
         <div className="container mx-auto px-16">
           <h1 className="text-center text-3xl font-bold py-10">
-            Kaftka shopping kart
+            Kaftka shopping cart
           </h1>
           <Routes>
             <Route exact path="/" Component={Products} />
