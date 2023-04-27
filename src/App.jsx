@@ -4,7 +4,6 @@ import Products from "./components/Products";
 import Cart from "./components/Cart";
 import NewProduct from "./components/NewProduct";
 import UpdateProduct from "./components/UpdateProduct";
-import FeatureProduct from "./components/FeatureProduct";
 
 import { Provider } from "react-redux";
 import store from "./store";
@@ -21,7 +20,6 @@ function App() {
           <Routes>
             <Route exact path="/" Component={Products} />
             <Route exact path="/products/new" Component={NewProduct} />
-            <Route exact path="/products/feature" Component={FeatureProduct} />
             <Route exact path="/cart" Component={Cart} />
             <Route
               exact

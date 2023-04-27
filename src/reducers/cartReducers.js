@@ -3,10 +3,12 @@ import { ADD_TO_CART, REMOVE_FROM_CART, CLEAR_CART } from '../types';
 const initialState = {
     cart: [],
     error: null,
-    loading: false
+    loading: false,
+    total: 0
 }
 
 export default function (state = initialState, action) {
+
     switch (action.type) {
         case ADD_TO_CART:
             return {
@@ -16,14 +18,13 @@ export default function (state = initialState, action) {
         case REMOVE_FROM_CART:
             return {
                 total: state.total - action.payload.price,
-                // TODO: fix this
-                cart: state.cart.filter((cart) => cart.id !== action.payload.is)
+                cart: state.cart.filter((product) => product.id !== action.payload.id)
             };
 
         case CLEAR_CART:
             return {
                 total: 0,
-                cart: state
+                cart: []
             };
         default:
             return state;

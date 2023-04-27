@@ -5,9 +5,16 @@ import {
   updateProductAction,
   deleteProductAction,
 } from "../actions/productActions";
+
+import {
+  addToCart,
+  removeFromCart
+} from '../actions/cartActions'
+
 import Swal from "sweetalert2";
 
 const ProductCard = ({ product }) => {
+  // console.log("que llega en producto desde cart", product)
   const { id, title, image, price, category, description, rating } = product;
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -32,6 +39,32 @@ const ProductCard = ({ product }) => {
     dispatch(updateProductAction(product));
     navigate(`/products/update/${product.id}`);
   };
+
+  const handleAddToCart = () => {
+    const product = {
+      id,
+      title,
+      image,
+      description,
+      category,
+      price
+    }
+
+    dispatch(addToCart(product))
+  }
+
+  const handleRemoveFromCart = () => {
+    const product = {
+      id,
+      title,
+      image,
+      description,
+      category,
+      price
+    }
+
+    dispatch(removeFromCart(product))
+  }
   
   return (
     <div
@@ -45,7 +78,7 @@ const ProductCard = ({ product }) => {
       />
       <h3>{title}</h3>
       <p>{description}</p>
-      <p className="font-bold">${price}</p>
+      <p className="font-bold">${Number(price)}</p>
       <p>
         <b>Category: {category}</b>
       </p>
@@ -53,7 +86,7 @@ const ProductCard = ({ product }) => {
         <b>rating: {rating?.rate}</b>
       </p>
       {/* Handle this if its a product page then only show add to cart otherwise show removefromcart */}
-      <div className="flex justify-center">
+      <div className="flex justify-center py-3">
         <button
           type="button"
           onClick={() => redirect(product)}
@@ -70,6 +103,24 @@ const ProductCard = ({ product }) => {
           Delete
         </button>
       </div>
+      <div className="flex justify-center py-3">
+        <button
+          type="button"
+          onClick={handleAddToCart}
+          className="border-2 border-blue-100 hover:border-blue-600 focus:border-blue-500 rounded-lg p-2 flex items-center mx-2"
+        >
+          Add to Cart
+        </button>
+
+        <button
+          type="button"
+          onClick={handleRemoveFromCart}
+          className="border-2 border-red-200 hover:border-red-600 rounded-lg p-2 flex items-center"
+        >
+          Remove from Cart
+        </button>
+      </div>
+
     </div>
   );
 };

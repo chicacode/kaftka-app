@@ -35,20 +35,10 @@ const Header = () => {
                   data-te-ripple-init
                   data-te-ripple-color="light"
                 >
-                  Home
+                  Products
                 </Link>
               </li>
-              <li className="mb-4 lg:mb-0 lg:pr-2" data-te-nav-item-ref>
-                <Link
-                  className="block transition duration-150 ease-in-out text-blue-100 hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30 dark:hover:text-fuchsia-200 dark:focus:text-white lg:p-2 [&.active]:text-black/90"
-                  to={"/products/feature"}
-                  data-te-nav-link-ref
-                  data-te-ripple-init
-                  data-te-ripple-color="light"
-                >
-                  Features
-                </Link>
-              </li>          
+              
                 <li className="mb-2 lg:mb-0 lg:pr-2" data-te-nav-item-ref>
                   <Link
                     className="block transition duration-150 ease-in-out text-blue-100 hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30 dark:hover:text-fuchsia-200 dark:focus:text-white lg:p-2 [&.active]:text-black/90"

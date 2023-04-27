@@ -74,6 +74,7 @@ export const fecthProduct = () => {
         try {
             setTimeout(async () => {
                 const response = await clientAxios.get("http://localhost:4000/products");
+                console.log("response", response.data)
                 dispatch(fetchProductSuccess(response.data))
             }, 3000)
         } catch (error) {

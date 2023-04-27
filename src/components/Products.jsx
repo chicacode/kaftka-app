@@ -14,6 +14,15 @@ const Products = () => {
 
   const { products } = useSelector((state) => state);
 
+  const convertPtoductPrice = products?.products.map((item) => {
+    console.log("Item", item);
+    if (typeof item?.price === "string") {
+      return parseInt(item?.price);
+    }
+    return item;
+  });
+  console.log("convertPtoductPrice", convertPtoductPrice);
+
   return (
     <div>
       {products.loading && (
@@ -23,12 +32,12 @@ const Products = () => {
           </div>
         </div>
       )}
-      <div className="grid grid-cols-1 xl:grid xl:grid-cols-3 gap-4">
+      <div className="grid grid-cols-2 xl:grid xl:grid-cols-3 gap-4">
         {products.length === 0 ? (
           <div>No hay productos</div>
         ) : (
-          products?.products.map((product) => {
-              return <ProductCard key={product?.id} product={product} />;
+          products.products.map((product) => {
+            return <ProductCard key={product?.id} product={product} />;
           })
         )}
         {products.error ? (
