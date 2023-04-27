@@ -15,7 +15,7 @@ const UpdateProduct = () => {
   const navigate = useNavigate();
   const productToUpdate = useSelector((state) => state.products.productUpdate);
 
-  console.log(productToUpdate)
+
   useEffect(() => {
     setProduct(productToUpdate);
   }, [productToUpdate]);
@@ -26,9 +26,6 @@ const UpdateProduct = () => {
       [e.target.name]: e.target.value
     })
   }
-
-  // if(!productToUpdate) return null;
-  // const { title, price, description } = productToUpdate;
 
   const onSubmit = (e) => {
     e.preventDefault();

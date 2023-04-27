@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { createNewProduct } from "../actions/productActions";
+import { showAlert, hideAlert } from "../actions/alertActions";
 import Loader from "./Loader";
 
 const NewProduct = () => {
@@ -13,6 +14,7 @@ const NewProduct = () => {
   const navigate = useNavigate();
 
   const { products } = useSelector((state) => state);
+  const { alert } = useSelector((state) => state.alert);
 
   const addNewProduct = (product) => dispatch(createNewProduct(product));
 
@@ -21,10 +23,18 @@ const NewProduct = () => {
     // Validate form
 
     if (title.trim() === "" || price <= 0) {
+      const alert = {
+        message: "Fill in all fields",
+        classes: "border border-red-500 py-2 text-center mt-2",
+      };
+
+      dispatch(showAlert(alert));
       return;
     }
 
     // check errors
+
+    dispatch(hideAlert());
 
     // add product
     addNewProduct({
@@ -43,9 +53,7 @@ const NewProduct = () => {
         <h5 className="mb-2 text-xl font-medium leading-tight text-neutral-800">
           Add Product
         </h5>
-        <p className="mb-4 text-base text-neutral-600">
-          With supporting text below as a natural lead-in to additional content.
-        </p>
+        {alert ? <p className={alert.classes}>{alert.message}</p> : null}
 
         <div className="rounded-lg p-6 border-2 border-slate-100">
           <form onSubmit={submitNewProduct}>
@@ -71,7 +79,6 @@ const NewProduct = () => {
                 type="number"
                 className="peer block min-h-[auto] w-full rounded-lg border-2 border-slate-200 bg-white px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none  [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                 id="price"
-
                 name="price"
                 value={price}
                 onChange={(e) => setPrice(Number(e.target.value))}

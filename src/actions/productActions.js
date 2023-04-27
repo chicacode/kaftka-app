@@ -1,5 +1,4 @@
 import clientAxios from "../config/axios";
-import productsReducers from "../reducers/productsReducers";
 import { FETCH_PRODUCT_SUCCESS, FETCH_PRODUCT_FAILURE, FETCH_PRODUCT_START, ADD_PRODUCT, ADD_PRODUCT_SUCCESS, ADD_PRODUCT_FAILURE, GET_PRODUCT_UPDATE, UPDATE_PRODUCT_START, UPDATE_PRODUCT_SUCCESS, UPDATE_PRODUCT_FAILURE, GET_PRODUCT_DELETE, DELETE_PRODUCT_SUCCESS, DELETE_PRODUCT_FAILURE } from "../types";
 import Swal from "sweetalert2";
 // Actions creators
