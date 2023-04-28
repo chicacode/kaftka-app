@@ -43,42 +43,33 @@ const Header = () => {
           <div
             className="hidden w-full md:block md:w-auto"
             id="navbar-default"
-            data-te-collapse-item
           >
             <ul
-              className="mr-auto flex flex-col lg:flex-row items-center"
-              data-te-navbar-nav-ref
+              className="font-medium flex flex-col items-center p-4 md:p-0 mt-4 border  md:flex-row md:space-x-8 md:mt-0 md:border-0"
             >
-              <li className="mb-4 lg:mb-0 lg:pr-2" data-te-nav-item-ref>
+              <li className="mb-4 lg:mb-0 lg:pr-2">
                 <Link
                   className="block transition duration-150 ease-in-out text-blue-100 hover:text-blue-700 focus:text-blue-700 disabled:text-black/30 dark:hover:text-fuchsia-200 "
                   to={"/"}
-                  data-te-nav-link-ref
-                  data-te-ripple-init
-                  data-te-ripple-color="light"
+                  aria-current="page"
                 >
                   Products
                 </Link>
               </li>
 
-              <li className="mb-2 lg:mb-0 lg:pr-2" data-te-nav-item-ref>
+              <li className="mb-2 lg:mb-0 lg:pr-2">
                 <Link
                   className="block transition duration-150 ease-in-out text-blue-100 hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30 dark:hover:text-fuchsia-200 dark:focus:text-white lg:p-2 [&.active]:text-black/90"
                   to={"/products/new"}
-                  data-te-nav-link-ref
-                  data-te-ripple-init
-                  data-te-ripple-color="light"
+            
                 >
                   Add new product &#43;
                 </Link>
               </li>
-              <li className="mb-4 lg:mb-0 lg:pr-2" data-te-nav-item-ref>
+              <li className="mb-4 lg:mb-0 lg:pr-2">
                 <Link
                   className="block transition duration-150 ease-in-out text-blue-100 hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30 dark:hover:text-fuchsia-200 dark:focus:text-white lg:p-2 [&.active]:text-black/90"
                   to={"/cart"}
-                  data-te-nav-link-ref
-                  data-te-ripple-init
-                  data-te-ripple-color="light"
                 >
                   Cart
                   <i className="fa-solid fa-cart-shopping"></i>

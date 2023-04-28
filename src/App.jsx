@@ -14,7 +14,7 @@ function App() {
       <Provider store={store}>
         <Header />
         <div className="container mx-auto px-16">
-          <h1 className="text-center text-3xl font-bold py-10">
+          <h1 className="text-center text-4xl font-bold py-16 text-blue-950">
             Kaftka shopping cart
           </h1>
           <Routes>
